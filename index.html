@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
+    <title>Samurai-3D | Impresión 3D Profesional</title>
     <style>
         * {
             margin: 0;
@@ -13,29 +13,38 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background: #f3f3f3;
+            color: #222;
         }
 
+        /* --- Header Samurai --- */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #6d0000 100%);
             color: white;
-            padding: 2rem 0;
+            padding: 2.8rem 0;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* --- Navbar --- */
         nav {
-            background: #333;
+            background: #111;
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
         }
 
         nav ul {
@@ -46,20 +55,22 @@
         }
 
         nav li {
-            margin: 0 1.5rem;
+            margin: 0 1.4rem;
         }
 
         nav a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
+            letter-spacing: 1px;
         }
 
         nav a:hover {
-            color: #667eea;
+            color: #ff4d4d;
         }
 
+        /* --- Main Container --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -69,154 +80,184 @@
         section {
             margin: 3rem 0;
             padding: 2rem;
-            background: white;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 12px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
 
         section h2 {
-            color: #667eea;
+            color: #6d0000;
             margin-bottom: 1rem;
-            font-size: 2rem;
+            font-size: 2.4rem;
+            border-left: 6px solid #6d0000;
+            padding-left: 12px;
+            font-weight: bold;
         }
 
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* --- Cards --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .card {
             padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            border-left: 5px solid #6d0000;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
         }
 
         .card h3 {
-            color: #764ba2;
-            margin-bottom: 0.5rem;
+            color: #6d0000;
+            margin-bottom: 0.8rem;
         }
 
+        /* --- Botón Samurai --- */
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6d0000 0%, #240000 100%);
             color: white;
             text-decoration: none;
-            border-radius: 25px;
-            transition: transform 0.3s;
-            margin-top: 1rem;
+            border-radius: 30px;
+            transition: transform 0.3s, background 0.3s;
+            margin-top: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
             transform: scale(1.05);
+            background: linear-gradient(135deg, #a60000 0%, #3b0000 100%);
         }
 
+        /* --- Footer --- */
         footer {
-            background: #333;
+            background: #111;
             color: white;
             text-align: center;
             padding: 2rem 0;
             margin-top: 3rem;
         }
 
+        footer p { opacity: 0.7; }
+
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            nav li {
-                margin: 0.5rem 1rem;
-            }
-
-            .container {
-                padding: 1rem;
-            }
+            header h1 { font-size: 2rem; }
+            nav li { margin: 0.5rem 0.8rem; }
+            .container { padding: 1rem; }
         }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>Bienvenido a Mi Sitio Web</h1>
-        <p>Construido con GitHub Pages</p>
+        <h1>Samurai-3D</h1>
+        <p>Impresión 3D rápida, precisa y profesional inspirada en la cultura japonesa</p>
     </header>
 
     <nav>
         <ul>
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre Mí</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#portafolio">Portafolio</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
     <div class="container">
+
+        <!-- INICIO -->
         <section id="inicio">
-            <h2>Inicio</h2>
-            <p>¡Hola! Esta es una plantilla base para tu sitio web en GitHub Pages. Puedes personalizarla con tu información, cambiar los colores, agregar más secciones y hacer que sea completamente tuya.</p>
-            <a href="#proyectos" class="btn">Ver Proyectos</a>
+            <h2>Bienvenido</h2>
+            <p>
+                En <strong>Samurai-3D</strong> nos especializamos en crear piezas de impresión 3D con 
+                <strong>alta precisión, acabado profesional y rapidez</strong>.  
+                Trabajamos con PLA, ABS, PETG y resina para garantizar resultados impecables.
+            </p>
+            <a href="#portafolio" class="btn">Ver trabajos</a>
         </section>
 
-        <section id="sobre-mi">
-            <h2>Sobre Mí</h2>
-            <p>Aquí puedes escribir información sobre ti, tu experiencia, tus habilidades o lo que quieras compartir con los visitantes de tu sitio web.</p>
+        <!-- SERVICIOS -->
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <p>Ofrecemos soluciones completas de impresión 3D:</p>
+
             <div class="grid">
+
                 <div class="card">
-                    <h3>💼 Experiencia</h3>
-                    <p>Describe tu experiencia profesional o académica aquí.</p>
+                    <h3>🖨️ Impresión 3D</h3>
+                    <p>Impresiones de piezas personalizadas en PLA, ABS, PETG o resina.</p>
                 </div>
+
                 <div class="card">
-                    <h3>🎯 Habilidades</h3>
-                    <p>Lista tus principales habilidades y competencias.</p>
+                    <h3>⚙️ Diseño 3D</h3>
+                    <p>Modelado profesional con Fusion 360 y Blender.</p>
                 </div>
+
                 <div class="card">
-                    <h3>🎓 Educación</h3>
-                    <p>Comparte tu formación académica y certificaciones.</p>
+                    <h3>🛠️ Prototipado</h3>
+                    <p>Diseño rápido de prototipos funcionales para proyectos académicos o comerciales.</p>
                 </div>
+
             </div>
         </section>
 
-        <section id="proyectos">
-            <h2>Proyectos</h2>
-            <p>Muestra tus proyectos más importantes:</p>
+        <!-- PORTAFOLIO -->
+        <section id="portafolio">
+            <h2>Portafolio</h2>
+            <p>Aquí podrás ver algunos de nuestros trabajos más recientes:</p>
+
             <div class="grid">
                 <div class="card">
-                    <h3>Proyecto 1</h3>
-                    <p>Descripción breve de tu primer proyecto destacado.</p>
-                    <a href="#" class="btn">Ver más</a>
+                    <h3>Katana decorativa</h3>
+                    <p>Modelo impreso en PLA+ de alta calidad.</p>
                 </div>
+
                 <div class="card">
-                    <h3>Proyecto 2</h3>
-                    <p>Descripción breve de tu segundo proyecto destacado.</p>
-                    <a href="#" class="btn">Ver más</a>
+                    <h3>Engranajes funcionales</h3>
+                    <p>Piezas precisas para prototipos mecánicos.</p>
                 </div>
+
                 <div class="card">
-                    <h3>Proyecto 3</h3>
-                    <p>Descripción breve de tu tercer proyecto destacado.</p>
-                    <a href="#" class="btn">Ver más</a>
+                    <h3>Miniaturas detalladas</h3>
+                    <p>Impresas en resina para máximo detalle.</p>
                 </div>
             </div>
+
+            <a href="#" class="btn">Ver galería completa</a>
         </section>
 
+        <!-- CONTACTO -->
         <section id="contacto">
             <h2>Contacto</h2>
-            <p>¿Quieres ponerte en contacto? Aquí puedes agregar tus redes sociales o un formulario de contacto.</p>
-            <p>📧 Email: tuemail@ejemplo.com</p>
-            <p>💼 LinkedIn: tu-perfil</p>
-            <p>🐙 GitHub: tu-usuario</p>
+            <p>¿Necesitas un proyecto o una cotización? Escríbenos:</p>
+
+            <p>📧 Email: <strong>samurai3d@gmail.com</strong></p>
+            <p>📱 WhatsApp: <strong>+591 XXX XXX XX</strong></p>
+            <p>📸 Instagram: <strong>@samurai3d</strong></p>
         </section>
+
     </div>
 
     <footer>
-        <p>&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
-        <p>Desarrollado con ❤️ usando GitHub Pages</p>
+        <p>&copy; 2025 Samurai-3D. Todos los derechos reservados.</p>
+        <p>Impresión 3D con precisión samurái.</p>
     </footer>
+
 </body>
 </html>
