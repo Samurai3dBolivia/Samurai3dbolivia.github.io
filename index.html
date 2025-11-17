@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samurai-3D | Impresión 3D Profesional</title>
+
+    <!-- Animación estilo japonés -->
     <style>
         * {
             margin: 0;
@@ -15,15 +17,47 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f3f3f3;
             color: #222;
+            overflow-x: hidden;
         }
 
-        /* --- Header Samurai --- */
+        /* --- Header Samurai con logo --- */
         header {
             background: linear-gradient(135deg, #000000 0%, #6d0000 100%);
             color: white;
-            padding: 2.8rem 0;
+            padding: 3.5rem 0;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animación de viento japonés */
+        header::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.09) 5%, rgba(0,0,0,0) 70%);
+            animation: viento 12s linear infinite;
+        }
+
+        @keyframes viento {
+            0% { transform: rotate(0deg) translate(0,0); }
+            100% { transform: rotate(360deg) translate(0,0); }
+        }
+
+        /* Logo */
+        .logo {
+            width: 130px;
+            height: auto;
+            margin-bottom: 1rem;
+            animation: aparecer 1.5s ease-out;
+        }
+
+        @keyframes aparecer {
+            0% { opacity: 0; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         header h1 {
@@ -70,7 +104,7 @@
             color: #ff4d4d;
         }
 
-        /* --- Main Container --- */
+        /* Main container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -94,12 +128,7 @@
             font-weight: bold;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* --- Cards --- */
+        /* Cards */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -120,12 +149,18 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.2);
         }
 
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
         .card h3 {
             color: #6d0000;
             margin-bottom: 0.8rem;
         }
 
-        /* --- Botón Samurai --- */
+        /* Button */
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
@@ -144,7 +179,7 @@
             background: linear-gradient(135deg, #a60000 0%, #3b0000 100%);
         }
 
-        /* --- Footer --- */
+        /* Footer */
         footer {
             background: #111;
             color: white;
@@ -155,19 +190,14 @@
 
         footer p { opacity: 0.7; }
 
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            nav li { margin: 0.5rem 0.8rem; }
-            .container { padding: 1rem; }
-        }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="img/logo_samurai3d.png" class="logo" alt="Logo Samurai-3D">
         <h1>Samurai-3D</h1>
-        <p>Impresión 3D rápida, precisa y profesional inspirada en la cultura japonesa</p>
+        <p>Impresión 3D con precisión y espíritu japonés</p>
     </header>
 
     <nav>
@@ -181,72 +211,49 @@
 
     <div class="container">
 
-        <!-- INICIO -->
         <section id="inicio">
             <h2>Bienvenido</h2>
-            <p>
-                En <strong>Samurai-3D</strong> nos especializamos en crear piezas de impresión 3D con 
-                <strong>alta precisión, acabado profesional y rapidez</strong>.  
-                Trabajamos con PLA, ABS, PETG y resina para garantizar resultados impecables.
-            </p>
-            <a href="#portafolio" class="btn">Ver trabajos</a>
+            <p>En <strong>Samurai-3D</strong> ofrecemos impresión 3D con detalles finos, alta precisión y rapidez. Inspirados en la estética japonesa, damos vida a tus ideas con calidad profesional.</p>
         </section>
 
-        <!-- SERVICIOS -->
         <section id="servicios">
             <h2>Servicios</h2>
-            <p>Ofrecemos soluciones completas de impresión 3D:</p>
-
             <div class="grid">
-
                 <div class="card">
                     <h3>🖨️ Impresión 3D</h3>
-                    <p>Impresiones de piezas personalizadas en PLA, ABS, PETG o resina.</p>
+                    <p>Impresión en PLA, ABS, PETG y resina con acabados profesionales.</p>
                 </div>
-
                 <div class="card">
                     <h3>⚙️ Diseño 3D</h3>
-                    <p>Modelado profesional con Fusion 360 y Blender.</p>
+                    <p>Modelado y diseño de piezas complejas listas para imprimir.</p>
                 </div>
-
                 <div class="card">
                     <h3>🛠️ Prototipado</h3>
-                    <p>Diseño rápido de prototipos funcionales para proyectos académicos o comerciales.</p>
+                    <p>Piezas funcionales para ingeniería, arquitectura y proyectos.</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- PORTAFOLIO -->
         <section id="portafolio">
             <h2>Portafolio</h2>
-            <p>Aquí podrás ver algunos de nuestros trabajos más recientes:</p>
-
             <div class="grid">
                 <div class="card">
-                    <h3>Katana decorativa</h3>
-                    <p>Modelo impreso en PLA+ de alta calidad.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Engranajes funcionales</h3>
-                    <p>Piezas precisas para prototipos mecánicos.</p>
-                </div>
-
-                <div class="card">
+                    <img src="img/trabajo1.jpg" alt="Impresión 3D 1">
                     <h3>Miniaturas detalladas</h3>
-                    <p>Impresas en resina para máximo detalle.</p>
+                </div>
+                <div class="card">
+                    <img src="img/trabajo2.jpg" alt="Impresión 3D 2">
+                    <h3>Prototipo funcional</h3>
+                </div>
+                <div class="card">
+                    <img src="img/trabajo3.jpg" alt="Impresión 3D 3">
+                    <h3>Diseños personalizados</h3>
                 </div>
             </div>
-
-            <a href="#" class="btn">Ver galería completa</a>
         </section>
 
-        <!-- CONTACTO -->
         <section id="contacto">
             <h2>Contacto</h2>
-            <p>¿Necesitas un proyecto o una cotización? Escríbenos:</p>
-
             <p>📧 Email: <strong>samurai3d@gmail.com</strong></p>
             <p>📱 WhatsApp: <strong>+591 XXX XXX XX</strong></p>
             <p>📸 Instagram: <strong>@samurai3d</strong></p>
@@ -255,8 +262,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Samurai-3D. Todos los derechos reservados.</p>
-        <p>Impresión 3D con precisión samurái.</p>
+        <p>&copy; 2025 Samurai-3D — Impresión 3D de alta calidad.</p>
     </footer>
 
 </body>
