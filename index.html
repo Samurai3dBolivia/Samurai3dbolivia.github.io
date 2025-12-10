@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samurai-3D | Impresión 3D Profesional</title>
+    <title>Samurai-3D | Dashboard</title>
 
-    <!-- Animación estilo japonés -->
     <style>
         * {
             margin: 0;
@@ -24,13 +23,12 @@
         header {
             background: linear-gradient(135deg, #000000 0%, #6d0000 100%);
             color: white;
-            padding: 3.5rem 0;
+            padding: 2rem 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Animación de viento japonés */
         header::before {
             content: "";
             position: absolute;
@@ -47,11 +45,10 @@
             100% { transform: rotate(360deg) translate(0,0); }
         }
 
-        /* Logo */
         .logo {
-            width: 130px;
+            width: 100px;
             height: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             animation: aparecer 1.5s ease-out;
         }
 
@@ -61,79 +58,95 @@
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: bold;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
         }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        /* --- Navbar --- */
-        nav {
+        /* --- Sistema de Tabs/Dashboards --- */
+        .dashboard-tabs {
             background: #111;
-            padding: 1rem 0;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        nav ul {
-            list-style: none;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            overflow-x: auto;
         }
 
-        nav li {
-            margin: 0 1.4rem;
-        }
-
-        nav a {
+        .tab-button {
+            background: transparent;
             color: #fff;
-            text-decoration: none;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1rem;
             font-weight: 600;
-            transition: color 0.3s;
             letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
         }
 
-        nav a:hover {
+        .tab-button:hover {
+            background: rgba(255,255,255,0.1);
             color: #ff4d4d;
         }
 
-        /* Main container */
-        .container {
-            max-width: 1200px;
+        .tab-button.active {
+            background: #6d0000;
+            border-bottom: 3px solid #ff4d4d;
+        }
+
+        /* Contenedor de dashboards */
+        .dashboard-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        section {
-            margin: 3rem 0;
+        .dashboard {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Secciones dentro de dashboards */
+        .section {
+            margin: 2rem 0;
             padding: 2rem;
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
         }
 
-        section h2 {
+        .section h2 {
             color: #6d0000;
-            margin-bottom: 1rem;
-            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
             border-left: 6px solid #6d0000;
             padding-left: 12px;
             font-weight: bold;
         }
 
-        /* Cards */
+        /* Cards/Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .card {
@@ -149,29 +162,92 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.2);
         }
 
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
         .card h3 {
             color: #6d0000;
             margin-bottom: 0.8rem;
+            font-size: 1.3rem;
         }
 
-        /* Button */
+        .card p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Estadísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #6d0000 0%, #240000 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Tabla */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #6d0000;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f8f8;
+        }
+
+        /* Botones */
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
             background: linear-gradient(135deg, #6d0000 0%, #240000 100%);
             color: white;
             text-decoration: none;
+            border: none;
             border-radius: 30px;
             transition: transform 0.3s, background 0.3s;
-            margin-top: 1.2rem;
+            margin: 0.5rem;
             font-weight: bold;
             letter-spacing: 1px;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .btn:hover {
@@ -190,80 +266,333 @@
 
         footer p { opacity: 0.7; }
 
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-tabs {
+                justify-content: flex-start;
+            }
+            
+            .tab-button {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="img/logo_samurai3d.png" class="logo" alt="Logo Samurai-3D">
-        <h1>Samurai-3D</h1>
-        <p>Impresión 3D con precisión y espíritu japonés</p>
+        <div style="position: relative; z-index: 1;">
+            <div style="font-size: 4rem; margin-bottom: 0.5rem;">⚔️</div>
+            <h1>Samurai-3D</h1>
+            <p style="opacity: 0.9; margin-top: 0.5rem;">Panel de Control</p>
+        </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#portafolio">Portafolio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- Tabs de navegación -->
+    <div class="dashboard-tabs">
+        <button class="tab-button active" onclick="switchDashboard('inicio')">🏠 Inicio</button>
+        <button class="tab-button" onclick="switchDashboard('proyectos')">📊 Proyectos</button>
+        <button class="tab-button" onclick="switchDashboard('servicios')">⚙️ Servicios</button>
+        <button class="tab-button" onclick="switchDashboard('estadisticas')">📈 Estadísticas</button>
+        <button class="tab-button" onclick="switchDashboard('clientes')">👥 Clientes</button>
+        <button class="tab-button" onclick="switchDashboard('configuracion')">⚡ Configuración</button>
+    </div>
 
-    <div class="container">
+    <div class="dashboard-container">
 
-        <section id="inicio">
-            <h2>Bienvenido</h2>
-            <p>En <strong>Samurai-3D</strong> ofrecemos impresión 3D con detalles finos, alta precisión y rapidez. Inspirados en la estética japonesa, damos vida a tus ideas con calidad profesional.</p>
-        </section>
+        <!-- Dashboard: Inicio -->
+        <div id="inicio" class="dashboard active">
+            <div class="section">
+                <h2>Bienvenido al Dashboard</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">
+                    Sistema de gestión <strong>Samurai-3D</strong>. Aquí podrás administrar tus proyectos de impresión 3D, 
+                    visualizar estadísticas y gestionar clientes con precisión y estilo japonés.
+                </p>
+            </div>
 
-        <section id="servicios">
-            <h2>Servicios</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🖨️ Impresión 3D</h3>
-                    <p>Impresión en PLA, ABS, PETG y resina con acabados profesionales.</p>
-                </div>
-                <div class="card">
-                    <h3>⚙️ Diseño 3D</h3>
-                    <p>Modelado y diseño de piezas complejas listas para imprimir.</p>
-                </div>
-                <div class="card">
-                    <h3>🛠️ Prototipado</h3>
-                    <p>Piezas funcionales para ingeniería, arquitectura y proyectos.</p>
+            <div class="section">
+                <h2>Resumen Rápido</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">47</div>
+                        <div class="label">Proyectos Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">23</div>
+                        <div class="label">Clientes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">156</div>
+                        <div class="label">Impresiones</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">98%</div>
+                        <div class="label">Satisfacción</div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="portafolio">
-            <h2>Portafolio</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="img/trabajo1.jpg" alt="Impresión 3D 1">
-                    <h3>Miniaturas detalladas</h3>
-                </div>
-                <div class="card">
-                    <img src="img/trabajo2.jpg" alt="Impresión 3D 2">
-                    <h3>Prototipo funcional</h3>
-                </div>
-                <div class="card">
-                    <img src="img/trabajo3.jpg" alt="Impresión 3D 3">
-                    <h3>Diseños personalizados</h3>
+        <!-- Dashboard: Proyectos -->
+        <div id="proyectos" class="dashboard">
+            <div class="section">
+                <h2>Gestión de Proyectos</h2>
+                <button class="btn">+ Nuevo Proyecto</button>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Proyecto</th>
+                                <th>Cliente</th>
+                                <th>Estado</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td>
+                                <td>Miniatura Samurai</td>
+                                <td>Carlos López</td>
+                                <td>🟢 En Proceso</td>
+                                <td>10/12/2025</td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>Prototipo Industrial</td>
+                                <td>Tech Corp</td>
+                                <td>🟡 Pendiente</td>
+                                <td>08/12/2025</td>
+                            </tr>
+                            <tr>
+                                <td>#003</td>
+                                <td>Piezas Arquitectónicas</td>
+                                <td>Arquitectos SA</td>
+                                <td>✅ Completado</td>
+                                <td>05/12/2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>📧 Email: <strong>samurai3d@gmail.com</strong></p>
-            <p>📱 WhatsApp: <strong>+591 XXX XXX XX</strong></p>
-            <p>📸 Instagram: <strong>@samurai3d</strong></p>
-        </section>
+        <!-- Dashboard: Servicios -->
+        <div id="servicios" class="dashboard">
+            <div class="section">
+                <h2>Catálogo de Servicios</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>🖨️ Impresión 3D FDM</h3>
+                        <p>Impresión en PLA, ABS, PETG con acabados profesionales. Ideal para prototipos y piezas funcionales.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                    <div class="card">
+                        <h3>💎 Impresión en Resina</h3>
+                        <p>Alta resolución y detalles finos para miniaturas, joyería y modelos de precisión.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                    <div class="card">
+                        <h3>⚙️ Diseño 3D Custom</h3>
+                        <p>Modelado y diseño de piezas complejas desde cero, listas para fabricación.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                    <div class="card">
+                        <h3>🛠️ Prototipado Rápido</h3>
+                        <p>Desarrollo acelerado de prototipos funcionales para validación de diseños.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                    <div class="card">
+                        <h3>🎨 Post-Procesado</h3>
+                        <p>Lijado, pintado y acabados profesionales para tus impresiones.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                    <div class="card">
+                        <h3>📐 Escaneo 3D</h3>
+                        <p>Digitalización de objetos físicos para réplica o ingeniería inversa.</p>
+                        <button class="btn">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard: Estadísticas -->
+        <div id="estadisticas" class="dashboard">
+            <div class="section">
+                <h2>Métricas de Rendimiento</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">842</div>
+                        <div class="label">Horas de Impresión</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">15kg</div>
+                        <div class="label">Material Usado</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">$4,280</div>
+                        <div class="label">Ingresos del Mes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">12</div>
+                        <div class="label">Proyectos Nuevos</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Distribución por Material</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>PLA</h3>
+                        <p><strong>45%</strong> del total</p>
+                        <p>Material más usado para prototipos y miniaturas</p>
+                    </div>
+                    <div class="card">
+                        <h3>PETG</h3>
+                        <p><strong>25%</strong> del total</p>
+                        <p>Para piezas funcionales y resistentes</p>
+                    </div>
+                    <div class="card">
+                        <h3>Resina</h3>
+                        <p><strong>20%</strong> del total</p>
+                        <p>Alta precisión y detalles finos</p>
+                    </div>
+                    <div class="card">
+                        <h3>ABS</h3>
+                        <p><strong>10%</strong> del total</p>
+                        <p>Aplicaciones industriales</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard: Clientes -->
+        <div id="clientes" class="dashboard">
+            <div class="section">
+                <h2>Base de Clientes</h2>
+                <button class="btn">+ Agregar Cliente</button>
+                
+                <div class="grid" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3>Carlos López</h3>
+                        <p><strong>Email:</strong> carlos@email.com</p>
+                        <p><strong>Proyectos:</strong> 8</p>
+                        <p><strong>Estado:</strong> 🟢 Activo</p>
+                        <button class="btn">Ver Perfil</button>
+                    </div>
+                    <div class="card">
+                        <h3>Tech Corp SA</h3>
+                        <p><strong>Email:</strong> contacto@techcorp.com</p>
+                        <p><strong>Proyectos:</strong> 15</p>
+                        <p><strong>Estado:</strong> 🟢 Activo</p>
+                        <button class="btn">Ver Perfil</button>
+                    </div>
+                    <div class="card">
+                        <h3>Arquitectos Modernos</h3>
+                        <p><strong>Email:</strong> info@arquimodernos.com</p>
+                        <p><strong>Proyectos:</strong> 5</p>
+                        <p><strong>Estado:</strong> 🟡 Pendiente</p>
+                        <button class="btn">Ver Perfil</button>
+                    </div>
+                    <div class="card">
+                        <h3>María García</h3>
+                        <p><strong>Email:</strong> maria.g@email.com</p>
+                        <p><strong>Proyectos:</strong> 3</p>
+                        <p><strong>Estado:</strong> 🟢 Activo</p>
+                        <button class="btn">Ver Perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard: Configuración -->
+        <div id="configuracion" class="dashboard">
+            <div class="section">
+                <h2>Configuración del Sistema</h2>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>🖨️ Impresoras</h3>
+                        <p>Gestionar impresoras conectadas y parámetros de impresión</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                    <div class="card">
+                        <h3>💰 Precios</h3>
+                        <p>Actualizar tarifas de servicios y materiales</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                    <div class="card">
+                        <h3>👤 Perfil</h3>
+                        <p>Editar información de la empresa y contacto</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                    <div class="card">
+                        <h3>📧 Notificaciones</h3>
+                        <p>Configurar alertas y notificaciones automáticas</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                    <div class="card">
+                        <h3>🔒 Seguridad</h3>
+                        <p>Gestionar contraseñas y accesos</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                    <div class="card">
+                        <h3>📊 Reportes</h3>
+                        <p>Exportar datos y generar informes</p>
+                        <button class="btn">Configurar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Información de Contacto</h2>
+                <p>📧 <strong>Email:</strong> samurai3d@gmail.com</p>
+                <p>📱 <strong>WhatsApp:</strong> +591 XXX XXX XX</p>
+                <p>📸 <strong>Instagram:</strong> @samurai3d</p>
+                <p>🌐 <strong>Ubicación:</strong> La Paz, Bolivia</p>
+            </div>
+        </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2025 Samurai-3D — Impresión 3D de alta calidad.</p>
+        <p>&copy; 2025 Samurai-3D — Impresión 3D de alta calidad con espíritu japonés.</p>
     </footer>
+
+    <script>
+        function switchDashboard(dashboardId) {
+            // Ocultar todos los dashboards
+            const dashboards = document.querySelectorAll('.dashboard');
+            dashboards.forEach(dashboard => {
+                dashboard.classList.remove('active');
+            });
+
+            // Remover clase active de todos los botones
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostrar el dashboard seleccionado
+            const selectedDashboard = document.getElementById(dashboardId);
+            if (selectedDashboard) {
+                selectedDashboard.classList.add('active');
+            }
+
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+
+            // Scroll suave al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
